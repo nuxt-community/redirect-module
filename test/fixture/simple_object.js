@@ -9,6 +9,8 @@ module.exports = {
   },
   modules: ['@@'],
   redirect: [
-    { from: '^/redirected', to: '/' }
+    { from: '^/redirected', to: '/' },
+    { from: '^/many/(.*)$', to: '/posts/abcde' },
+    { from: '^/mapped/(.*)$', to: '/posts/$1' }
   ]
 }

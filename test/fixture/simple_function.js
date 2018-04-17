@@ -11,7 +11,9 @@ module.exports = {
   redirect: async () => {
     await Promise.resolve(r => setTimeout(r, 100))
     return [
-      { from: '^/redirected', to: '/' }
+      { from: '^/redirected', to: '/' },
+      { from: '^/many/(.*)$', to: '/posts/abcde' },
+      { from: '^/mapped/(.*)$', to: '/posts/$1' }
     ]
   }
 }

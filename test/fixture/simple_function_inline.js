@@ -8,6 +8,10 @@ module.exports = {
     resourceHints: false
   },
   modules: [
-    ['@@', () => [{ from: '^/redirected', to: '/' }]]
+    ['@@', () => [
+      { from: '^/redirected', to: '/' },
+      { from: '^/many/(.*)$', to: '/posts/abcde' },
+      { from: '^/mapped/(.*)$', to: '/posts/$1' }
+    ]]
   ]
 }

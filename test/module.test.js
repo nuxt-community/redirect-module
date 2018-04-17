@@ -8,6 +8,48 @@ const functionInlineConfig = require('./fixture/simple_function_inline.js')
 const url = path => `http://localhost:3000${path}`
 const get = path => request(url(path))
 
+const testSuite = () => {
+  test('render', async () => {
+    try {
+      let html = await get('/')
+      expect(html).toContain('Works!')
+    } catch (e) {
+      expect(e).toBeNull()
+    }
+  })
+
+  test('simple redirect', async () => {
+    try {
+      let html = await get('/redirected')
+      expect(html).toContain('Works!')
+    } catch (e) {
+      expect(e).toBeNull()
+    }
+  })
+
+  test('many redirect', async () => {
+    for (const n in ['abcde', 'abcdeasd', 'raeasdsads']) {
+      try {
+        let html = await get(`/many/${n}`)
+        expect(html).toContain('abcde')
+      } catch (e) {
+        expect(e).toBeNull()
+      }
+    }
+  })
+
+  test('mapped redirect', async () => {
+    for (const n in ['abcde', 'abcdeasd', 'raeasdsads']) {
+      try {
+        let html = await get(`/many/${n}`)
+        expect(html).toContain(n)
+      } catch (e) {
+        expect(e).toBeNull()
+      }
+    }
+  })
+}
+
 describe('basic', () => {
   let nuxt
 
@@ -21,15 +63,7 @@ describe('basic', () => {
     await nuxt.close()
   })
 
-  test('render', async () => {
-    let html = await get('/')
-    expect(html).toContain('Works!')
-  })
-
-  test('simple redirect', async () => {
-    let html = await get('/redirected')
-    expect(html).toContain('Works!')
-  })
+  testSuite()
 })
 
 describe('function', () => {
@@ -45,15 +79,7 @@ describe('function', () => {
     await nuxt.close()
   })
 
-  test('render', async () => {
-    let html = await get('/')
-    expect(html).toContain('Works!')
-  })
-
-  test('simple redirect', async () => {
-    let html = await get('/redirected')
-    expect(html).toContain('Works!')
-  })
+  testSuite()
 })
 
 describe('function inline', () => {
@@ -69,13 +95,5 @@ describe('function inline', () => {
     await nuxt.close()
   })
 
-  test('render', async () => {
-    let html = await get('/')
-    expect(html).toContain('Works!')
-  })
-
-  test('simple redirect', async () => {
-    let html = await get('/redirected')
-    expect(html).toContain('Works!')
-  })
+  testSuite()
 })
