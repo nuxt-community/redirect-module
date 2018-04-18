@@ -22,25 +22,24 @@ With the Redirect Module setting up redirects will become easier than ever befor
 - Add `@nuxtjs/redirect-module` dependency using yarn or npm to your project
 - Add `@nuxtjs/redirect-module` to `modules` section of `nuxt.config.js`
 - Configure it:
+
+### Inline options
 ```js
 {
   modules: [
-    // Simple usage
-    '@nuxtjs/redirect-module',
-
-    // With options
-    ['@nuxtjs/redirect-module', []],
+    ['@nuxtjs/redirect-module', [ /* Redirect option here */]],
  ]
 }
 ```
 
+### Dedicated option array
 ```js
 {
   modules: [
     '@nuxtjs/redirect-module'
  ],
  redirect: [
-  // Module options
+  // Redirect options here
  ]
 }
 ```
