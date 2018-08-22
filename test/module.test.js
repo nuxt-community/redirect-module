@@ -5,6 +5,8 @@ const objectConfig = require('./fixture/simple_object.js')
 const functionConfig = require('./fixture/simple_function.js')
 const functionInlineConfig = require('./fixture/simple_function_inline.js')
 
+const { JSDOM } = require('jsdom')
+
 const url = path => `http://localhost:3000${path}`
 const get = path => request(url(path))
 
@@ -12,7 +14,8 @@ const testSuite = () => {
   test('render', async () => {
     try {
       let html = await get('/')
-      expect(html).toContain('Works!')
+      let dom = new JSDOM(html)
+      expect(dom.window.document.querySelector('body').textContent).toContain('Works!')
     } catch (e) {
       expect(e).toBeNull()
     }
@@ -21,17 +24,19 @@ const testSuite = () => {
   test('simple redirect', async () => {
     try {
       let html = await get('/redirected')
-      expect(html).toContain('Works!')
+      let dom = new JSDOM(html)
+      expect(dom.window.document.querySelector('body').textContent).toContain('Works!')
     } catch (e) {
       expect(e).toBeNull()
     }
   })
 
   test('many redirect', async () => {
-    for (const n in ['abcde', 'abcdeasd', 'raeasdsads']) {
+    for (const n of ['abcde', 'abcdeasd', 'raeasdsads']) {
       try {
         let html = await get(`/many/${n}`)
-        expect(html).toContain('abcde')
+        let dom = new JSDOM(html)
+        expect(dom.window.document.querySelector('body').textContent).toContain('abcde')
       } catch (e) {
         expect(e).toBeNull()
       }
@@ -39,10 +44,11 @@ const testSuite = () => {
   })
 
   test('mapped redirect', async () => {
-    for (const n in ['abcde', 'abcdeasd', 'raeasdsads']) {
+    for (const n of ['abcde', 'abcdeasd', 'raeasdsads']) {
       try {
-        let html = await get(`/many/${n}`)
-        expect(html).toContain(n)
+        let html = await get(`/mapped/${n}`)
+        let dom = new JSDOM(html)
+        expect(dom.window.document.querySelector('body').textContent).toContain(n)
       } catch (e) {
         expect(e).toBeNull()
       }
