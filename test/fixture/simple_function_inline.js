@@ -1,17 +1,7 @@
-const { resolve } = require('path')
+const { redirects, baseConfig } = require('./utils')
 
-module.exports = {
-  rootDir: resolve(__dirname, '../..'),
-  srcDir: __dirname,
-  dev: false,
-  render: {
-    resourceHints: false
-  },
+module.exports = Object.assign({}, baseConfig, {
   modules: [
-    ['@@', () => [
-      { from: '^/redirected', to: '/' },
-      { from: '^/many/(.*)$', to: '/posts/abcde' },
-      { from: '^/mapped/(.*)$', to: '/posts/$1' }
-    ]]
+    ['@@', () => redirects]
   ]
-}
+})

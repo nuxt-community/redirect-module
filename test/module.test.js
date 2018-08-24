@@ -12,46 +12,36 @@ const get = path => request(url(path))
 
 const testSuite = () => {
   test('render', async () => {
-    try {
-      let html = await get('/')
-      let dom = new JSDOM(html)
-      expect(dom.window.document.querySelector('body').textContent).toContain('Works!')
-    } catch (e) {
-      expect(e).toBeNull()
-    }
+    const html = await get('/')
+    const dom = new JSDOM(html)
+    expect(dom.window.document.querySelector('body').textContent).toContain('Works!')
   })
 
   test('simple redirect', async () => {
-    try {
-      let html = await get('/redirected')
-      let dom = new JSDOM(html)
-      expect(dom.window.document.querySelector('body').textContent).toContain('Works!')
-    } catch (e) {
-      expect(e).toBeNull()
-    }
+    const html = await get('/redirected')
+    const dom = new JSDOM(html)
+    expect(dom.window.document.querySelector('body').textContent).toContain('Works!')
+  })
+
+  test('simple non-ascii redirect', async () => {
+    const html = await get('/äßU<')
+    const dom = new JSDOM(html)
+    expect(dom.window.document.querySelector('body').textContent).toContain('Works!')
   })
 
   test('many redirect', async () => {
     for (const n of ['abcde', 'abcdeasd', 'raeasdsads']) {
-      try {
-        let html = await get(`/many/${n}`)
-        let dom = new JSDOM(html)
-        expect(dom.window.document.querySelector('body').textContent).toContain('abcde')
-      } catch (e) {
-        expect(e).toBeNull()
-      }
+      const html = await get(`/many/${n}`)
+      const dom = new JSDOM(html)
+      expect(dom.window.document.querySelector('body').textContent).toContain('abcde')
     }
   })
 
   test('mapped redirect', async () => {
     for (const n of ['abcde', 'abcdeasd', 'raeasdsads']) {
-      try {
-        let html = await get(`/mapped/${n}`)
-        let dom = new JSDOM(html)
-        expect(dom.window.document.querySelector('body').textContent).toContain(n)
-      } catch (e) {
-        expect(e).toBeNull()
-      }
+      const html = await get(`/mapped/${n}`)
+      const dom = new JSDOM(html)
+      expect(dom.window.document.querySelector('body').textContent).toContain(n)
     }
   })
 }
