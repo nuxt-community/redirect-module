@@ -3,7 +3,8 @@ const redirects = [
   { from: '^/redirected', to: '/' },
   { from: /^\/äßU</, to: '/' },
   { from: '^/many/(.*)$', to: '/posts/abcde' },
-  { from: '^/mapped/(.*)$', to: '/posts/$1' }
+  { from: '^/mapped/(.*)$', to: '/posts/$1' },
+  { from: '^/function', to: () => '/' }
 ]
 
 const baseConfig = {

@@ -44,6 +44,12 @@ const testSuite = () => {
       expect(dom.window.document.querySelector('body').textContent).toContain(n)
     }
   })
+
+  test('function evaluated to compute redirect rule to', async () => {
+    const html = await get('/function')
+    const dom = new JSDOM(html)
+    expect(dom.window.document.querySelector('body').textContent).toContain('Works!')
+  })
 }
 
 describe('basic', () => {
