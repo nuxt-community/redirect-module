@@ -72,6 +72,22 @@ redirect: [
  ]
 ```
 
+Furthermoer you can use a function to create your `to` url as well :+1:
+The `from` rule and the `req` of the middleware will be provided as arguments.
+The function can also be *async*!
+
+```js
+redirect: [
+  {
+    from: '^/someUrlHere/(.*)$',
+    to: (from, req) => {
+      const param = req.url.match(/functionAsync\/(.*)$/)[1]
+      return `/posts/${param}`
+    }
+  }
+]
+```
+
 And if you really need more power... okay! You can also use a factory function
 to generate your redirects:
 
