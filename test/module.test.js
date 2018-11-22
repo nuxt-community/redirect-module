@@ -44,6 +44,24 @@ const testSuite = () => {
       expect(dom.window.document.querySelector('body').textContent).toContain(n)
     }
   })
+
+  test('function evaluated to compute redirect rule to', async () => {
+    const html = await get('/function')
+    const dom = new JSDOM(html)
+    expect(dom.window.document.querySelector('body').textContent).toContain('Works!')
+  })
+
+  test('async function evaluated to compute redirect rule to', async () => {
+    const html = await get('/functionAsync')
+    const dom = new JSDOM(html)
+    expect(dom.window.document.querySelector('body').textContent).toContain('Works!')
+  })
+
+  test('async function param considered', async () => {
+    const html = await get('/functionAsync/def')
+    const dom = new JSDOM(html)
+    expect(dom.window.document.querySelector('body').textContent).toContain('def')
+  })
 }
 
 describe('basic', () => {
