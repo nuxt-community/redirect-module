@@ -45,8 +45,8 @@
     ]
   },
   "devDependencies": {
-    "@commitlint/cli": "^7.0.0",
-    "@commitlint/config-conventional": "^7.0.1",
+    "@commitlint/cli": "^7.2.1",
+    "@commitlint/config-conventional": "^7.1.2",
     "codecov": "latest",
     "eslint": "latest",
     "eslint-config-standard": "latest",
@@ -56,7 +56,7 @@
     "eslint-plugin-promise": "latest",
     "eslint-plugin-standard": "latest",
     "eslint-plugin-vue": "latest",
-    "husky": "^1.0.0-rc.13",
+    "husky": "^1.2.0",
     "jest": "latest",
     "jsdom": "latest",
     "nuxt": "latest",
