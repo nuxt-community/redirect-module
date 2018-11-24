@@ -1,11 +1,11 @@
 const { Nuxt, Builder } = require('nuxt')
 const request = require('request-promise-native')
+const { JSDOM } = require('jsdom')
 
 const objectConfig = require('./fixture/simple_object.js')
 const functionConfig = require('./fixture/simple_function.js')
-const functionInlineConfig = require('./fixture/simple_function_inline.js')
 
-const { JSDOM } = require('jsdom')
+const functionInlineConfig = require('./fixture/simple_function_inline.js')
 
 const url = path => `http://localhost:3000${path}`
 const get = path => request(url(path))
