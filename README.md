@@ -19,25 +19,27 @@ loss or incorrect handling. But this time is over!
 
 ## Setup
 
-- Add `@nuxtjs/redirect-module` dependency using yarn or npm to your project
-- Add `@nuxtjs/redirect-module` to `modules` section of `nuxt.config.js`
-- Configure it:
-
-### Inline options
+1. Add `@nuxtjs/redirect-module` dependency using yarn or npm to your project
+2. Add `@nuxtjs/redirect-module` to `modules` section of `nuxt.config.js`
+3. Configure it:
 
 ```js
-{
+export default {
   modules: [
-    ['@nuxtjs/redirect-module', [ /* Redirect option here */]],
+    // Simple usage
+    ['@nuxtjs/redirect-module', {
+      // Redirect option here
+    }]
  ]
 }
 ```
 
-### Dedicated option array
+using top level options
 
 ```js
 {
   modules: [
+    // Simple usage
     '@nuxtjs/redirect-module'
  ],
  redirect: [
@@ -102,12 +104,6 @@ redirect: async () => {
 
 **ATTENTION**: The factory function **must** return an array with redirect
 objects (as seen above).
-
-## Development
-
-- Clone this repository
-- Install dependencies using `yarn install` or `npm install`
-- Start development server using `npm run dev`
 
 ## License
 
