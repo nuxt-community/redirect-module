@@ -26,8 +26,7 @@ const baseConfig = {
   dev: false,
   render: {
     resourceHints: false
-  },
-  modules: ['@@']
+  }
 }
 
 module.exports = { redirects, baseConfig }
