@@ -19,12 +19,12 @@ loss or incorrect handling. But this time is over!
 
 ## Setup
 
-1. Add `@nuxtjs/redirect-module` dependency using yarn or npm to your project
-2. Add `@nuxtjs/redirect-module` to `modules` section of `nuxt.config.js`
+1. Add `@nuxtjs/redirect-module` dependency with `yarn` or `npm` into your project
+2. Add `@nuxtjs/redirect-module` to `modules` section of `nuxt.config.js`:
 3. Configure it:
 
 ```js
-export default {
+{
   modules: [
     // Simple usage
     ['@nuxtjs/redirect-module', {
