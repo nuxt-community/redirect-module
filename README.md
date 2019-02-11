@@ -34,7 +34,7 @@ loss or incorrect handling. But this time is over!
 }
 ```
 
-using top level options
+### Using top level options
 
 ```js
 {
