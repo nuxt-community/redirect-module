@@ -62,7 +62,7 @@
     "jest": "^24.0.0",
     "jsdom": "^13.0.0",
     "nuxt": "^2.3.2",
-    "standard-version": "^4.4.0"
+    "standard-version": "^5.0.0"
   },
   "husky": {
     "hooks": {
