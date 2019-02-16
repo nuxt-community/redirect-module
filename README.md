@@ -7,7 +7,7 @@
 [![Dependencies][david-dm-src]][david-dm-href]
 [![Standard JS][standard-js-src]][standard-js-href]
 
-> Redirect Module makes the redirects will become easier.
+> Nuxt module to dynamically redirect initial requests.
 
 [📖 **Release Notes**](./CHANGELOG.md)
 

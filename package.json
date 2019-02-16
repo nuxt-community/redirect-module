@@ -1,7 +1,7 @@
 {
   "name": "@nuxtjs/redirect-module",
   "version": "0.2.0",
-  "description": "Redirect Module makes the redirects will become easier.",
+  "description": "Nuxt module to dynamically redirect initial requests.",
   "keywords": [
     "nuxtjs",
     "nuxt",
