@@ -26,7 +26,6 @@ loss or incorrect handling. But this time is over!
 ```js
 {
   modules: [
-    // Simple usage
     ['@nuxtjs/redirect-module', {
       // Redirect option here
     }]
@@ -39,7 +38,6 @@ loss or incorrect handling. But this time is over!
 ```js
 {
   modules: [
-    // Simple usage
     '@nuxtjs/redirect-module'
  ],
  redirect: [
