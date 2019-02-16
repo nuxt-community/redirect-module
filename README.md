@@ -72,7 +72,7 @@ redirect: [
  ]
 ```
 
-Furthermoer you can use a function to create your `to` url as well :+1:
+Furthermore you can use a function to create your `to` url as well :+1:
 The `from` rule and the `req` of the middleware will be provided as arguments.
 The function can also be *async*!
 
