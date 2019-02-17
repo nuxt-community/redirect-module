@@ -102,7 +102,7 @@ redirect: async () => {
 objects (as seen above).
 
 ## Gotcha's
-The redirect module only works in universal mode (will not work on generate). Redirects are realized through a server middleware, which can only react when there is a server running which is only the case when your application is in universal/SSR mode.
+The redirect module will not work in combination with `nuxt generate`. Redirects are realized through a server middleware, which can only react when there is a server running.
 
 ## Development
 
