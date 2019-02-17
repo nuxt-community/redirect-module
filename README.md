@@ -101,7 +101,7 @@ redirect: async () => {
 **ATTENTION**: The factory function **must** return an array with redirect
 objects (as seen above).
 
-## Gotcha's
+## Gotchas
 The redirect module will not work in combination with `nuxt generate`. Redirects are realized through a server middleware, which can only react when there is a server running.
 
 ## Development
