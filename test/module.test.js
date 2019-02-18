@@ -1,13 +1,18 @@
-const { Nuxt, Builder } = require('nuxt')
-const request = require('request-promise-native')
+
+jest.setTimeout(60000)
+
+const { Nuxt, Builder } = require('nuxt-edge')
 const { JSDOM } = require('jsdom')
+const request = require('request-promise-native')
+const getPort = require('get-port')
 
-const objectConfig = require('./fixture/simple_object.js')
-const functionConfig = require('./fixture/simple_function.js')
+const objectConfig = require('./fixture/simple_object')
+const functionConfig = require('./fixture/simple_function')
+const functionInlineConfig = require('./fixture/simple_function_inline')
 
-const functionInlineConfig = require('./fixture/simple_function_inline.js')
+let nuxt, port
 
-const url = path => `http://localhost:3000${path}`
+const url = path => `http://localhost:${port}${path}`
 const get = path => request(url(path))
 
 const testSuite = () => {
@@ -65,13 +70,12 @@ const testSuite = () => {
 }
 
 describe('basic', () => {
-  let nuxt
-
   beforeAll(async () => {
     nuxt = new Nuxt(objectConfig)
     await new Builder(nuxt).build()
-    await nuxt.listen(3000)
-  }, 60000)
+    port = await getPort()
+    await nuxt.listen(port)
+  })
 
   afterAll(async () => {
     await nuxt.close()
@@ -81,13 +85,12 @@ describe('basic', () => {
 })
 
 describe('function', () => {
-  let nuxt
-
   beforeAll(async () => {
     nuxt = new Nuxt(functionConfig)
     await new Builder(nuxt).build()
-    await nuxt.listen(3000)
-  }, 60000)
+    port = await getPort()
+    await nuxt.listen(port)
+  })
 
   afterAll(async () => {
     await nuxt.close()
@@ -97,13 +100,12 @@ describe('function', () => {
 })
 
 describe('function inline', () => {
-  let nuxt
-
   beforeAll(async () => {
     nuxt = new Nuxt(functionInlineConfig)
     await new Builder(nuxt).build()
-    await nuxt.listen(3000)
-  }, 60000)
+    port = await getPort()
+    await nuxt.listen(port)
+  })
 
   afterAll(async () => {
     await nuxt.close()

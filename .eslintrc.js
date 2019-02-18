@@ -4,5 +4,7 @@ module.exports = {
     parser: 'babel-eslint',
     sourceType: 'module'
   },
-  extends: '@nuxtjs'
+  extends: [
+    '@nuxtjs'
+  ]
 }

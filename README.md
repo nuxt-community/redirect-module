@@ -1,12 +1,13 @@
 # Redirect Module 🔀 No more **cumbersome** redirects!
-[![npm (scoped with tag)](https://img.shields.io/npm/v/@nuxtjs/redirect-module/latest.svg?style=flat-square)](https://npmjs.com/package/@nuxtjs/redirect-module)
-[![npm](https://img.shields.io/npm/dt/@nuxtjs/redirect-module.svg?style=flat-square)](https://npmjs.com/package/@nuxtjs/redirect-module)
-[![CircleCI](https://img.shields.io/circleci/project/github/nuxt-community/redirect-module.svg?style=flat-square)](https://circleci.com/gh/nuxt-community/redirect-module)
-[![Codecov](https://img.shields.io/codecov/c/github/nuxt-community/redirect-module.svg?style=flat-square)](https://codecov.io/gh/nuxt-community/redirect-module)
-[![Dependencies](https://david-dm.org/nuxt-community/redirect-module/status.svg?style=flat-square)](https://david-dm.org/nuxt-community/redirect-module)
-[![js-standard-style](https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com)
 
->
+[![npm version][npm-version-src]][npm-version-href]
+[![npm downloads][npm-downloads-src]][npm-downloads-href]
+[![Circle CI][circle-ci-src]][circle-ci-href]
+[![Codecov][codecov-src]][codecov-href]
+[![Dependencies][david-dm-src]][david-dm-href]
+[![Standard JS][standard-js-src]][standard-js-href]
+
+> Nuxt module to dynamically redirect initial requests
 
 [📖 **Release Notes**](./CHANGELOG.md)
 
@@ -16,23 +17,24 @@ Redirecting URLs is an often discussed topic, especially when it comes to
 SEO. Previously it was hard to create a "real" redirect without performance
 loss or incorrect handling. But this time is over!
 
-With the Redirect Module setting up redirects will become easier than ever before!
-
 ## Setup
-- Add `@nuxtjs/redirect-module` dependency using yarn or npm to your project
-- Add `@nuxtjs/redirect-module` to `modules` section of `nuxt.config.js`
-- Configure it:
 
-### Inline options
+1. Add `@nuxtjs/redirect-module` dependency with `yarn` or `npm` into your project
+2. Add `@nuxtjs/redirect-module` to `modules` section of `nuxt.config.js`:
+3. Configure it:
+
 ```js
 {
   modules: [
-    ['@nuxtjs/redirect-module', [ /* Redirect option here */]],
+    ['@nuxtjs/redirect-module', {
+      // Redirect option here
+    }]
  ]
 }
 ```
 
-### Dedicated option array
+### Using top level options
+
 ```js
 {
   modules: [
@@ -115,3 +117,17 @@ The redirect module will not work in combination with `nuxt generate`. Redirects
 [MIT License](./LICENSE)
 
 Copyright (c) Alexander Lichter <npm@lichter.io>
+
+<!-- Badges -->
+[npm-version-src]: https://img.shields.io/npm/dt/@nuxtjs/redirect-module.svg?style=flat-square
+[npm-version-href]: https://npmjs.com/package/@nuxtjs/redirect-module
+[npm-downloads-src]: https://img.shields.io/npm/v/@nuxtjs/redirect-module/latest.svg?style=flat-square
+[npm-downloads-href]: https://npmjs.com/package/@nuxtjs/redirect-module
+[circle-ci-src]: https://img.shields.io/circleci/project/github/nuxt-community/redirect-module.svg?style=flat-square
+[circle-ci-href]: https://circleci.com/gh/nuxt-community/redirect-module
+[codecov-src]: https://img.shields.io/codecov/c/github/nuxt-community/redirect-module.svg?style=flat-square
+[codecov-href]: https://codecov.io/gh/nuxt-community/redirect-module
+[david-dm-src]: https://david-dm.org/nuxt-community/redirect-module/status.svg?style=flat-square
+[david-dm-href]: https://david-dm.org/nuxt-community/redirect-module
+[standard-js-src]: https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square
+[standard-js-href]: https://standardjs.com
