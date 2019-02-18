@@ -74,7 +74,7 @@ redirect: [
  ]
 ```
 
-Furthermoer you can use a function to create your `to` url as well :+1:
+Furthermore you can use a function to create your `to` url as well :+1:
 The `from` rule and the `req` of the middleware will be provided as arguments.
 The function can also be *async*!
 
@@ -102,6 +102,15 @@ redirect: async () => {
 
 **ATTENTION**: The factory function **must** return an array with redirect
 objects (as seen above).
+
+## Gotchas
+The redirect module will not work in combination with `nuxt generate`. Redirects are realized through a server middleware, which can only react when there is a server running.
+
+## Development
+
+- Clone this repository
+- Install dependencies using `yarn install` or `npm install`
+- Start development server using `npm run dev`
 
 ## License
 
