@@ -1,5 +1,4 @@
-const { resolve } = require('path')
-const redirects = [
+module.exports = [
   { from: '^/redirected', to: '/' },
   { from: /^\/äßU</, to: '/' },
   { from: '^/many/(.*)$', to: '/posts/abcde' },
@@ -19,14 +18,3 @@ const redirects = [
     })
   }
 ]
-
-const baseConfig = {
-  rootDir: resolve(__dirname, '../..'),
-  buildDir: resolve(__dirname, '.nuxt'),
-  srcDir: __dirname,
-  render: {
-    resourceHints: false
-  }
-}
-
-module.exports = { redirects, baseConfig }
