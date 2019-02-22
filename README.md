@@ -106,6 +106,12 @@ objects (as seen above).
 ## Gotchas
 The redirect module will not work in combination with `nuxt generate`. Redirects are realized through a server middleware, which can only react when there is a server running.
 
+## Development
+
+1. Clone this repository
+2. Install dependencies using `yarn install` or `npm install`
+3. Start development server using `npm run dev`
+
 ## License
 
 [MIT License](./LICENSE)
