@@ -5,14 +5,22 @@ const { JSDOM } = require('jsdom')
 const request = require('request-promise-native')
 const getPort = require('get-port')
 
-const objectConfig = require('./fixture/simple_object')
-const functionConfig = require('./fixture/simple_function')
-const functionInlineConfig = require('./fixture/simple_function_inline')
+const config = require('./fixture/nuxt.config')
+const redirects = require('./fixture/redirects')
 
 let nuxt, port
 
 const url = path => `http://localhost:${port}${path}`
 const get = path => request(url(path))
+
+const setupNuxt = async (config) => {
+  const nuxt = new Nuxt(config)
+  await new Builder(nuxt).build()
+  port = await getPort()
+  await nuxt.listen(port)
+
+  return nuxt
+}
 
 const testSuite = () => {
   test('render', async () => {
@@ -68,12 +76,9 @@ const testSuite = () => {
   })
 }
 
-describe('basic', () => {
+describe('module', () => {
   beforeAll(async () => {
-    nuxt = new Nuxt(objectConfig)
-    await new Builder(nuxt).build()
-    port = await getPort()
-    await nuxt.listen(port)
+    nuxt = await setupNuxt(config)
   })
 
   afterAll(async () => {
@@ -85,10 +90,13 @@ describe('basic', () => {
 
 describe('function', () => {
   beforeAll(async () => {
-    nuxt = new Nuxt(functionConfig)
-    await new Builder(nuxt).build()
-    port = await getPort()
-    await nuxt.listen(port)
+    nuxt = await setupNuxt({
+      ...config,
+      redirect: async () => {
+        await Promise.resolve(r => setTimeout(r, 100))
+        return redirects
+      }
+    })
   })
 
   afterAll(async () => {
@@ -100,10 +108,12 @@ describe('function', () => {
 
 describe('function inline', () => {
   beforeAll(async () => {
-    nuxt = new Nuxt(functionInlineConfig)
-    await new Builder(nuxt).build()
-    port = await getPort()
-    await nuxt.listen(port)
+    nuxt = await setupNuxt({
+      ...config,
+      modules: [
+        [require('../'), () => redirects]
+      ]
+    })
   })
 
   afterAll(async () => {
