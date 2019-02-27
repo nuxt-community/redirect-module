@@ -29,7 +29,7 @@ loss or incorrect handling. But this time is over!
     ['@nuxtjs/redirect-module', {
       // Redirect option here
     }]
- ]
+  ]
 }
 ```
 
@@ -39,10 +39,10 @@ loss or incorrect handling. But this time is over!
 {
   modules: [
     '@nuxtjs/redirect-module'
- ],
- redirect: [
-  // Redirect options here
- ]
+  ],
+  redirect: [
+    // Redirect options here
+  ]
 }
 ```
 
@@ -53,7 +53,7 @@ Simply add the links you want to redirect as objects to the module option array:
 ```js
 redirect: [
   { from: '^/myoldurl', to: '/mynewurl' }
- ]
+]
 ```
 
 You can set up a custom status code as well. By default, it's *302*!
@@ -61,7 +61,7 @@ You can set up a custom status code as well. By default, it's *302*!
 ```js
 redirect: [
   { from: '^/myoldurl', to: '/mynewurl', statusCode: 301 }
- ]
+]
 ```
 
 As you may have already noticed, we are leveraging the benefits of
@@ -69,9 +69,9 @@ As you may have already noticed, we are leveraging the benefits of
 
 ```js
 redirect: [
-  { from: '^/myoldurl/(.*)$', to: '/comeallhere', } // Many urls to one
-  { from: '^/anotherold/(.*)$', to: '/new/$1', } // One to one mapping
- ]
+  { from: '^/myoldurl/(.*)$', to: '/comeallhere' }, // Many urls to one
+  { from: '^/anotherold/(.*)$', to: '/new/$1' } // One to one mapping
+]
 ```
 
 Furthermore you can use a function to create your `to` url as well :+1:
