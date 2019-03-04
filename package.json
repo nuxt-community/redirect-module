@@ -46,7 +46,6 @@
     "get-port": "latest",
     "husky": "latest",
     "jest": "latest",
-    "jsdom": "latest",
     "nuxt-edge": "latest",
     "request": "latest",
     "request-promise-native": "latest",
