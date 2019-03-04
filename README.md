@@ -104,6 +104,7 @@ redirect: async () => {
 objects (as seen above).
 
 ## Gotchas
+
 The redirect module will not work in combination with `nuxt generate`. Redirects are realized through a server middleware, which can only react when there is a server running.
 
 ## Development
