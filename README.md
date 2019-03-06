@@ -46,6 +46,26 @@ loss or incorrect handling. But this time is over!
 }
 ```
 
+## Options
+
+### `rules`
+
+- Default: `[]`
+
+Rules of your redirects.
+
+### `onDecode`
+
+- Default: `(req, res, next) => decodeURI(req.url)`
+
+You can set decode.
+
+### `onDecodeError`
+
+- Default: `(error, req, res, next) => next(error)`
+
+You can set callback when there is an error in the decode.
+
 ## Usage
 
 Simply add the links you want to redirect as objects to the module option array:
@@ -100,12 +120,26 @@ redirect: async () => {
 }
 ```
 
+Now, if you want to customize your redirects, how your decode is done 
+or when there is some error in the decode, you can also:
+
+```js
+redirect: {
+  rules: [
+    { from: '^/myoldurl', to: '/mynewurl' }
+  ],
+  onDecode: (req, res, next) => decodeURI(req.url),
+  onDecodeError: (error, req, res, next) => next(error)
+}
+```
+
 **ATTENTION**: The factory function **must** return an array with redirect
 objects (as seen above).
 
 ## Gotchas
 
-The redirect module will not work in combination with `nuxt generate`. Redirects are realized through a server middleware, which can only react when there is a server running.
+The redirect module will not work in combination with `nuxt generate`.
+Redirects are realized through a server middleware, which can only react when there is a server running.
 
 ## Development
 

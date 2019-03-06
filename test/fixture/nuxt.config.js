@@ -10,5 +10,7 @@ module.exports = {
   modules: [
     { handler: require('../../') }
   ],
-  redirect: require('./redirects')
+  redirect: {
+    rules: require('./redirects')
+  }
 }
