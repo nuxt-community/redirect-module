@@ -3,12 +3,15 @@ jest.setTimeout(60000)
 const { Nuxt, Builder } = require('nuxt-edge')
 const request = require('request-promise-native')
 const getPort = require('get-port')
+const consola = require('consola')
 
 const redirects = require('./fixture/redirects')
 const config = require('./fixture/nuxt.config')
 config.dev = false
 
 let nuxt, port
+
+consola.mockTypes(() => jest.fn())
 
 const url = path => `http://localhost:${port}${path}`
 const get = path => request(url(path))
@@ -103,7 +106,7 @@ describe('function inline', () => {
     nuxt = await setupNuxt({
       ...config,
       modules: [
-        [require('../'), redirects[0]]
+        [require('../'), redirects]
       ]
     })
   })
@@ -113,4 +116,48 @@ describe('function inline', () => {
   })
 
   testSuite()
+})
+
+describe('error', () => {
+  const e = new Error('Error on decode')
+
+  beforeAll(async () => {
+    nuxt = await setupNuxt({
+      ...config,
+      redirect: {
+        rules: async () => {
+          await Promise.resolve(r => setTimeout(r, 100))
+          return redirects[0]
+        },
+
+        onDecode: (req) => {
+          if (req.url === '/error') {
+            throw e
+          }
+        }
+      }
+    })
+  })
+
+  beforeEach(() => {
+    consola.error.mockClear()
+  })
+
+  afterAll(async () => {
+    await nuxt.close()
+  })
+
+  test('on decode', async () => {
+    await expect(get('/error')).rejects.toMatchObject({
+      statusCode: 500
+    })
+
+    expect(consola.error).toHaveBeenCalledWith(e)
+  })
+
+  test('not found', async () => {
+    await expect(get('/not-found')).rejects.toMatchObject({
+      statusCode: 404
+    })
+  })
 })
