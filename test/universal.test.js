@@ -5,8 +5,8 @@ const request = require('request-promise-native')
 const getPort = require('get-port')
 const consola = require('consola')
 
-const redirects = require('./fixture/redirects')
-const config = require('./fixture/nuxt.config')
+const redirects = require('./fixture/universal/redirects')
+const config = require('./fixture/universal/nuxt.config')
 config.dev = false
 
 let nuxt, port
@@ -18,6 +18,7 @@ const get = path => request(url(path))
 
 const setupNuxt = async (config) => {
   const nuxt = new Nuxt(config)
+  await nuxt.ready()
   await new Builder(nuxt).build()
   port = await getPort()
   await nuxt.listen(port)
