@@ -66,6 +66,12 @@ You can set decode.
 
 You can set callback when there is an error in the decode.
 
+### `statusCode`
+
+- Default: `302`
+
+You can set the default statusCode which gets used when no statusCode is defined on the rule itself.
+
 ## Usage
 
 Simply add the links you want to redirect as objects to the module option array:
@@ -120,7 +126,7 @@ redirect: async () => {
 }
 ```
 
-Now, if you want to customize your redirects, how your decode is done 
+Now, if you want to customize your redirects, how your decode is done
 or when there is some error in the decode, you can also:
 
 ```js
