@@ -119,6 +119,34 @@ describe('function inline', () => {
   testSuite()
 })
 
+describe('default statusCode', () => {
+  beforeAll(async () => {
+    nuxt = await setupNuxt({
+      ...config,
+      redirect: {
+        rules: redirects,
+        statusCode: 301
+      }
+    })
+  })
+
+  afterAll(async () => {
+    await nuxt.close()
+  })
+
+  test('301 Moved Permanently', async () => {
+    try {
+      await request({
+        uri: url('/redirected'),
+        resolveWithFullResponse: true,
+        followRedirect: false
+      })
+    } catch (e) {
+      expect(e.statusCode).toBe(301)
+    }
+  })
+})
+
 describe('error', () => {
   const e = new Error('Error on decode')
 
