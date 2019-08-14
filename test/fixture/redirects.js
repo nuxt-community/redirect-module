@@ -16,5 +16,9 @@ module.exports = [
       const param = req.url.match(/functionAsync\/(.*)$/)[1]
       setTimeout(() => resolve(`/posts/${param}`), 2000)
     })
+  },
+  {
+    from: '^/errorInToFunction$',
+    to: () => Promise.reject(new Error('forced error'))
   }
 ]

@@ -42,6 +42,24 @@ const testSuite = () => {
     expect(html).toContain('Works!')
   })
 
+  test('redirect error with control character', async () => {
+    const requestOptions = {
+      uri: url(encodeURI('/mapped/ab\u0001')),
+      resolveWithFullResponse: true
+    }
+
+    await expect(request(requestOptions)).rejects.toHaveProperty('statusCode', 404)
+  })
+
+  test('redirect error with failing "to" function', async () => {
+    const requestOptions = {
+      uri: url('/errorInToFunction'),
+      resolveWithFullResponse: true
+    }
+
+    await expect(request(requestOptions)).rejects.toHaveProperty('statusCode', 500)
+  })
+
   test('many redirect', async () => {
     for (const n of ['abcde', 'abcdeasd', 'raeasdsads']) {
       const html = await get(`/many/${n}`)
