@@ -1,6 +1,19 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [0.2.1](https://github.com/nuxt-community/redirect-module/compare/v0.2.0...v0.2.1) (2019-08-26)
+
+
+### Bug Fixes
+
+* handling some unhandled error cases ([#52](https://github.com/nuxt-community/redirect-module/issues/52)) ([6ab0a2b](https://github.com/nuxt-community/redirect-module/commit/6ab0a2b))
+
+
+### Features
+
+* add option to set default statusCode ([#46](https://github.com/nuxt-community/redirect-module/issues/46)) ([6536afc](https://github.com/nuxt-community/redirect-module/commit/6536afc))
+* **module:** add option `onDecode` and `onDecodeError` ([#35](https://github.com/nuxt-community/redirect-module/issues/35)) ([4000dc7](https://github.com/nuxt-community/redirect-module/commit/4000dc7))
 
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/nuxt-community/redirect-module/compare/v0.1.0...v0.2.0) (2018-11-24)
