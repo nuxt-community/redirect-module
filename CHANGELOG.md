@@ -1,6 +1,13 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [0.3.1](https://github.com/nuxt-community/redirect-module/compare/v0.3.0...v0.3.1) (2019-08-27)
+
+
+### Bug Fixes
+
+* crash on init with inline-style options ([#55](https://github.com/nuxt-community/redirect-module/issues/55)) ([a28e683](https://github.com/nuxt-community/redirect-module/commit/a28e683))
 
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/nuxt-community/redirect-module/compare/v0.2.1...v0.3.0) (2019-08-26)
