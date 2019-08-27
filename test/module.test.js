@@ -121,13 +121,17 @@ describe('function', () => {
 })
 
 describe('function inline', () => {
+  const inlineConfig = {
+    ...config,
+    modules: [
+      [require('../'), redirects]
+    ]
+  }
+
+  delete inlineConfig.redirect
+
   beforeAll(async () => {
-    nuxt = await setupNuxt({
-      ...config,
-      modules: [
-        [require('../'), redirects]
-      ]
-    })
+    nuxt = await setupNuxt(inlineConfig)
   })
 
   afterAll(async () => {
