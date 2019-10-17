@@ -28,6 +28,9 @@ loss or incorrect handling. But this time is over!
   modules: [
     ['@nuxtjs/redirect-module', {
       // Redirect option here
+      rules: [
+        // redirect rules here
+      ]
     }]
   ]
 }
@@ -40,9 +43,12 @@ loss or incorrect handling. But this time is over!
   modules: [
     '@nuxtjs/redirect-module'
   ],
-  redirect: [
+  redirect: {
     // Redirect options here
-  ]
+    rules: [
+      // redirect rules here
+    ]
+  }
 }
 ```
 
@@ -54,11 +60,39 @@ loss or incorrect handling. But this time is over!
 
 Rules of your redirects.
 
+### `decodeFullUrl`
+
+- Default: `false`
+
+If enabled, protocol and host will also be considered for redirecting rules so you can have non-www to www or http to https redirects for example. Note that you likely have to adopt your rules when enabling this, e.g. `{ from: '^/myoldurl', to: '/mynewurl' }` will no longer work because the `from` regex no longer matches when proto and host are prepended.
+
 ### `onDecode`
 
-- Default: `(req, res, next) => decodeURI(req.url)`
+Default:
 
-You can set decode.
+```js
+// This will trust proxy headers. You can change this behaviour
+// by providing your own onDecode function.
+(req, options) => {
+  if (options.decodeFullUrl) {
+    return decodeURI(req.url)
+  } else {
+    let proto = req.headers['x-forwarded-proto']
+    if (proto === undefined) {
+      proto = req.connection.encrypted ? 'https' : 'http'
+    }
+ 
+    let host = req.headers['x-forwarded-host']
+    if (host === undefined) {
+      host = req.httpVersionMajor >= 2 ? req.headers[':authority'] : req.headers.host
+    }
+ 
+    return `${proto}://${host}${decodeURI(req.url)}`
+  }
+}
+```
+
+Allows you to change how the url is decoded.
 
 ### `onDecodeError`
 
@@ -123,6 +157,21 @@ to generate your redirects:
 redirect: async () => {
   const someThings = await axios.get("/myApi") // It'll wait!
   return someThings.map(coolTransformFunction)
+}
+```
+
+For redirecting http to https:
+
+```js
+redirect: {
+  decodeFullUrl: true,
+  rules: [
+    {
+      from: 'http:\/\/example\.com\/(.*)$',
+      to: 'https://example.com/$1',
+      statusCode: 301,
+    } 
+  ]
 }
 ```
 
