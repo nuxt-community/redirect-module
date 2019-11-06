@@ -42,6 +42,11 @@ const testSuite = () => {
     expect(html).toContain('Works!')
   })
 
+  test('non-ascii redirect to another non-ascii url', async () => {
+    const html = await get('/äöü')
+    expect(html).toContain('Works!')
+  })
+
   test('redirect error with control character', async () => {
     const requestOptions = {
       uri: url(encodeURI('/mapped/ab\u0001')),

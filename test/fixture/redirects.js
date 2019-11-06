@@ -1,6 +1,7 @@
 module.exports = [
   { from: '^/redirected', to: '/' },
   { from: /^\/äßU</, to: '/' },
+  { from: '^/äöü$', to: '/äßU<' },
   { from: '^/many/(.*)$', to: '/posts/abcde' },
   { from: '^/mapped/(.*)$', to: '/posts/$1' },
   { from: '^/function$', to: () => '/' },
