@@ -48,7 +48,7 @@ const testSuite = () => {
   })
 
   test('redirect with control character', async () => {
-    const html = await get(encodeURI('/mapped/ab\u0001'));
+    const html = await get(encodeURI('/mapped/ab\u0001'))
     expect(html).toContain('ab')
   })
 
