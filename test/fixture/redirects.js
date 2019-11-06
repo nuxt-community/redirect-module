@@ -18,6 +18,7 @@ module.exports = [
       setTimeout(() => resolve(`/posts/${param}`), 2000)
     })
   },
+  { from: '^/errorInTo$', to: '/mapped/\uD800ab\u0001/' },
   {
     from: '^/errorInToFunction$',
     to: () => Promise.reject(new Error('forced error'))

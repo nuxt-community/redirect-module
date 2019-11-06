@@ -47,9 +47,14 @@ const testSuite = () => {
     expect(html).toContain('Works!')
   })
 
-  test('redirect error with control character', async () => {
+  test('redirect with control character', async () => {
+    const html = await get(encodeURI('/mapped/ab\u0001'));
+    expect(html).toContain('ab')
+  })
+
+  test('redirect error due to malformatted target url', async () => {
     const requestOptions = {
-      uri: url(encodeURI('/mapped/ab\u0001')),
+      uri: url('/errorInTo'),
       resolveWithFullResponse: true
     }
 
