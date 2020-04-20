@@ -52,6 +52,12 @@ const testSuite = () => {
     expect(html).toContain('ab')
   })
 
+  test('redirect with malformed URI', async () => {
+    await expect(get('/%83')).rejects.toMatchObject({
+      statusCode: 400
+    })
+  })
+
   test('redirect error due to malformatted target url', async () => {
     const requestOptions = {
       uri: url('/errorInTo'),
@@ -195,6 +201,9 @@ describe('error', () => {
           if (req.url === '/error') {
             throw e
           }
+        },
+        onDecodeError: (error, _req, _res, next) => {
+          next(error)
         }
       }
     })
