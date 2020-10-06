@@ -167,7 +167,7 @@ redirect: {
   decodeFullUrl: true,
   rules: [
     {
-      from: 'http:\/\/example\.com\/(.*)$',
+      from: 'http://example.com/(.*)$',
       to: 'https://example.com/$1',
       statusCode: 301,
     } 
