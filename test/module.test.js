@@ -212,3 +212,35 @@ describe('error', () => {
     })
   })
 })
+
+describe('decodeFullUrl', () => {
+  beforeAll(async () => {
+    nuxt = await setupNuxt({
+      ...config,
+      redirect: {
+        rules: [{
+          from: `http://localhost:([0-9]+)/(.*)$`,
+          to: `https://localhost:$1/$2`,
+          statusCode: 301
+        }],
+        decodeFullUrl: true
+      }
+    })
+  })
+
+  afterAll(async () => {
+    await nuxt.close()
+  })
+
+  test('301 Moved Permanently', async () => {
+    try {
+      await request({
+        uri: url('/'),
+        resolveWithFullResponse: true,
+        followRedirect: false
+      })
+    } catch (e) {
+      expect(e.statusCode).toBe(301)
+    }
+  })
+})
