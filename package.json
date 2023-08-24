@@ -33,7 +33,7 @@
     "@commitlint/config-conventional": "^8.1.0",
     "@nuxtjs/eslint-config": "^1.1.2",
     "babel-eslint": "^10.0.3",
-    "babel-jest": "^24.9.0",
+    "babel-jest": "^29.6.4",
     "codecov": "^3.5.0",
     "consola": "^2.10.1",
     "eslint": "^6.2.2",
