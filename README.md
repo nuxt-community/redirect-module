@@ -8,8 +8,22 @@
 [![Standard JS][standard-js-src]][standard-js-href]
 
 > Nuxt 2 module to dynamically redirect initial requests
-
+ 
 [📖 **Release Notes**](./CHANGELOG.md)
+
+
+## Nuxt 3
+
+In Nuxt 3 redirects are supported out of the box through route rules, this module is not needed.
+
+```ts
+export default defineNuxtConfig({
+  routeRules: {
+   // Redirects legacy urls
+    '/old-page': { redirect: '/new-page' }
+  }
+})
+```
 
 ## Features
 
