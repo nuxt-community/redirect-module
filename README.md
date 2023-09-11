@@ -14,7 +14,7 @@
 
 ## Nuxt 3
 
-In Nuxt 3 redirects are supported out of the box through [Route Rules](https://nuxt.com/docs/guide/concepts/rendering#hybrid-rendering), this module is not needed.
+In Nuxt 3 redirects are supported out of the box through [Route Rules](https://nuxt.com/docs/guide/concepts/rendering#hybrid-rendering), this module may not be needed.
 
 ```ts
 export default defineNuxtConfig({
