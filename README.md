@@ -76,7 +76,7 @@ You can set decode.
 
 ### `onDecodeError`
 
-- Default: `(error, req, res, next) => next(error)`
+- Default: `(error, req, res, next) => next()`
 
 You can set callback when there is an error in the decode.
 
