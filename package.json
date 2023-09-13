@@ -43,6 +43,6 @@
     "nuxt-edge": "^2.10.0-26112969.c14bb35a",
     "request": "latest",
     "request-promise-native": "^1.0.7",
-    "standard-version": "^7.0.0"
+    "standard-version": "^8.0.1"
   }
 }
